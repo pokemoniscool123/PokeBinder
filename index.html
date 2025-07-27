@@ -1,142 +1,125 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PokeBinder</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .card img {
+      width: 100%;
+      display: block;
+    }
+    .popup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    .popup-content {
+      background: white;
+      padding: 20px;
+      max-width: 400px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .popup-content img {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    .close-btn {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background: #ef5350;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;PokeBinder&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family: sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #f2f2f2;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>h1 {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.grid {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.card {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: white;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>overflow: hidden;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 2px 5px rgba(0,0,0,0.1);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>transition: transform 0.2s;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.card:hover {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>transform: scale(1.05);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.card img {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: block;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.popup {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: fixed;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>top: 0; left: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 100%; height: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(0,0,0,0.8);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: none;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.popup-content {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: white;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>max-width: 400px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.popup-content img {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.close-btn {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 8px 16px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #ef5350;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: none;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 5px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;h1&gt;Welcome to PokeBinder!&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="grid" id="cardGrid"&gt;&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="popup" id="popup"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="popup-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h2 id="popupName"&gt;&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;img id="popupFront" src="" alt="Card Front"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;img id="popupBack" src="" alt="Card Back"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;&lt;strong&gt;Estimated Value:&lt;/strong&gt; $&lt;span id="popupValue"&gt;&lt;/span&gt;&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="close-btn" onclick="closePopup()"&gt;Close&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const cards = [</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{</p>
-<p class="p1"><span class="Apple-converted-space">        </span>name: "Charizard",</p>
-<p class="p1"><span class="Apple-converted-space">        </span>front: "images/card1-front.jpg",</p>
-<p class="p1"><span class="Apple-converted-space">        </span>back: "images/card1-back.jpg",</p>
-<p class="p1"><span class="Apple-converted-space">        </span>value: "250"</p>
-<p class="p1"><span class="Apple-converted-space">      </span>},</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{</p>
-<p class="p1"><span class="Apple-converted-space">        </span>name: "Pikachu VMAX",</p>
-<p class="p1"><span class="Apple-converted-space">        </span>front: "images/card2-front.jpg",</p>
-<p class="p1"><span class="Apple-converted-space">        </span>back: "images/card2-back.jpg",</p>
-<p class="p1"><span class="Apple-converted-space">        </span>value: "40"</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>// Add more cards here later</p>
-<p class="p1"><span class="Apple-converted-space">    </span>];</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>const cardGrid = document.getElementById("cardGrid");</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const popup = document.getElementById("popup");</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const popupName = document.getElementById("popupName");</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const popupFront = document.getElementById("popupFront");</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const popupBack = document.getElementById("popupBack");</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const popupValue = document.getElementById("popupValue");</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>cards.forEach(card =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const div = document.createElement("div");</p>
-<p class="p1"><span class="Apple-converted-space">      </span>div.className = "card";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>div.innerHTML = `&lt;img src="${card.front}" alt="${card.name}"&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>div.onclick = () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>popupName.textContent = card.name;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>popupFront.src = card.front;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>popupBack.src = card.back;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>popupValue.textContent = card.value;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>popup.style.display = "flex";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>};</p>
-<p class="p1"><span class="Apple-converted-space">      </span>cardGrid.appendChild(div);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function closePopup() {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>popup.style.display = "none";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+  <h1>Welcome to PokeBinder!</h1>
+  <div class="grid" id="cardGrid"></div>
+
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <h2 id="popupName"></h2>
+      <img id="popupFront" src="" alt="Card Front">
+      <img id="popupBack" src="" alt="Card Back">
+      <p><strong>Estimated Value:</strong> $<span id="popupValue"></span></p>
+      <button class="close-btn" onclick="closePopup()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const cards = [
+      {
+        name: "Charizard",
+        front: "images/card1-front.jpg",
+        back: "images/card1-back.jpg",
+        value: "250"
+      },
+      {
+        name: "Pikachu VMAX",
+        front: "images/card2-front.jpg",
+        back: "images/card2-back.jpg",
+        value: "40"
+      }
+    ];
+
+    const cardGrid = document.getElementById("cardGrid");
+    const popup = document.getElementById("popup");
+    const popupName = document.getElementById("popupName");
+    const popupFront = document.getElementById("popupFront");
+    const popupBack = document.getElementById("popupBack");
+    const popupValue = document.getElementById("popupValue");
+
+    cards.forEach(card => {
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `<img src="${card.front}" alt="${card.name}">`;
+      div.onclick = () => {
+        popupName.textContent = card.name;
+        popupFront.src = card.front;
+        popupBack.src = card.back;
+        popupValue.textContent = card.value;
+        popup.style.display = "flex";
+      };
+      cardGrid.appendChild(div);
+    });
+
+    function closePopup() {
+      popup.style.display = "none";
+    }
+  </script>
 </body>
 </html>
